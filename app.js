@@ -1,4 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import homeRoutes from './src/routes/homeRoutes';
 
