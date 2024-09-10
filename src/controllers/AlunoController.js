@@ -1,9 +1,17 @@
 import Aluno from '../models/Aluno';
+import Foto from '../models/Foto';
 
 class AlunoController {
   async index(req, res) {
-    const alunos = await Aluno.findAll();
-    res.json(alunos)
+    const alunos = await Aluno.findAll({
+      attributes: ["id", "nome", "sobrenome", "email", "idade", "peso", "altura"],
+      order: [[ 'id', 'desc'], [Foto, 'id', 'desc']],
+      include: {
+        model: Foto,
+        attributes: ['filename'],
+      }
+    });
+    res.json(alunos);
   }
 
   //crud
